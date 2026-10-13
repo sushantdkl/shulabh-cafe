@@ -189,6 +189,8 @@ section{padding-block:clamp(72px,10vw,124px)}
 .reserve h2{font-size:clamp(2.4rem,5vw,3.6rem);margin-top:4px}
 .reserve .body{color:#BFCBBE;margin-top:16px;max-width:42ch}
 .reserve .nums{margin-top:26px;font-family:var(--display);font-size:1.7rem;line-height:1.3;user-select:all}
+.reserve .nums a,.visit dd a{text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:rgba(211,185,131,.7)}
+.reserve .nums a:hover,.visit dd a:hover{color:var(--gold)}
 .reserve .nums small{display:block;font-family:var(--body);font-size:.85rem;color:#BFCBBE;user-select:none}
 .form{background:var(--linen);color:var(--espresso);padding:clamp(24px,4vw,44px);outline:1px solid rgba(211,185,131,.6);outline-offset:-10px}
 .kinds{display:flex;flex-wrap:wrap;gap:8px;border:0;margin:0;padding:0}
@@ -246,12 +248,12 @@ footer nav a{text-decoration:none}
 footer nav a:hover{color:#fff}
 footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid rgba(238,241,234,.12);font-size:.82rem}
 
-.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;box-shadow:0 12px 28px rgba(46,63,51,.35);transition:transform .2s}
+.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;justify-content:center;gap:9px;min-width:56px;height:56px;padding:0 20px;border-radius:999px;background:var(--wa);color:#fff;font-size:.88rem;font-weight:600;text-decoration:none;box-shadow:0 12px 28px rgba(46,63,51,.35);transition:transform .2s,background .2s}
 .wa-float:hover{transform:scale(1.06)}
 .wa-float svg{width:26px;height:26px}
 @media (hover:none){.btn:hover,.btn-ghost:hover{filter:none}.gallery-grid figure:hover img{transform:none}.wa-float:hover{transform:none}}
 @media (pointer:coarse){.topbar a,footer nav a{display:inline-flex;align-items:center;min-height:44px}}
-@media (max-width:360px){.nav .mobile-cta{font-size:0;width:44px;padding:0}.nav .mobile-cta::after{content:"Book";font-size:.78rem}.brand span{font-size:1.08rem}.wrap{padding-inline:14px}}
+@media (max-width:360px){.nav .mobile-cta{font-size:0;width:44px;padding:0}.nav .mobile-cta::after{content:"Book";font-size:.78rem}.brand span{font-size:1.08rem}.wrap{padding-inline:14px}.wa-float{padding:0;width:56px}.wa-float span{display:none}}
 </style>
 </head>
 <body>
@@ -269,7 +271,7 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
 
 <div class="topbar">
   <div class="wrap">
-    <span>Birendranagar, Surkhet. WhatsApp <a href="https://wa.me/9779844896928" target="_blank" rel="noopener">984-4896928</a></span>
+    <span>Birendranagar, Surkhet. WhatsApp <a class="wa-link" href="https://wa.me/9779844896928" target="_blank" rel="noopener">+977&nbsp;984&#8209;4896928</a></span>
     <span class="soc"><a href="https://www.facebook.com/SHULABH1959/" target="_blank" rel="noopener">Facebook</a><a href="https://www.tiktok.com/@shulabhrestaurantbakery" target="_blank" rel="noopener">TikTok</a></span>
   </div>
 </div>
@@ -392,7 +394,7 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
         <span class="script">Reservation</span>
         <h2>Book a table or order ahead</h2>
         <p class="body">Tell us what you need and send it straight to us on WhatsApp. We will reply to confirm the time and price.</p>
-        <p class="nums">984-4896928<br>985-8054596<small>WhatsApp and phone</small></p>
+        <p class="nums"><a class="wa-link" href="https://wa.me/9779844896928" target="_blank" rel="noopener">+977&nbsp;984&#8209;4896928</a><br><a href="tel:+9779858054596">+977&nbsp;985&#8209;8054596</a><small>WhatsApp and phone</small></p>
       </div>
       <form class="form" id="form">
         <fieldset class="kinds">
@@ -441,7 +443,7 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
         <h2>Visit Shulabh</h2>
         <dl>
           <div><dt>Address</dt><dd>Birendranagar, Surkhet</dd></div>
-          <div><dt>WhatsApp and phone</dt><dd>984-4896928<br>985-8054596</dd></div>
+          <div><dt>WhatsApp and phone</dt><dd><a class="wa-link" href="https://wa.me/9779844896928" target="_blank" rel="noopener">+977&nbsp;984&#8209;4896928</a><br><a href="tel:+9779858054596">+977&nbsp;985&#8209;8054596</a></dd></div>
         </dl>
       </div>
       <div class="map" id="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d484863.3954977515!2d81.66004385194454!3d28.42540112893078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a285ead69c3485%3A0x4ffa526949139f0c!2sSHULABH%20Restaurent%20%26Bakery!5e0!3m2!1sen!2snp!4v1791867110043!5m2!1sen!2snp" title="Shulabh Restaurant and Bakery on Google Maps" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
@@ -462,7 +464,7 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
   </div>
 </footer>
 
-<a class="wa-float wa-link" href="https://wa.me/9779844896928" target="_blank" rel="noopener" aria-label="Chat with Shulabh on WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg></a>
+<a class="wa-float wa-link" href="https://wa.me/9779844896928" target="_blank" rel="noopener" aria-label="Chat with Shulabh on WhatsApp at +977 984-4896928"><svg aria-hidden="true"><use href="#wa"/></svg><span>WhatsApp</span></a>
 
 <script>
 (function(){
