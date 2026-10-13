@@ -1,9 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Shulabh Restaurant &amp; Bakery</title>
+<meta name="description" content="Fresh bakery, made-to-order meals and coffee at Shulabh Restaurant &amp; Bakery in Birendranagar, Surkhet.">
+<meta name="theme-color" content="#2E3F33">
+<link rel="icon" href="img/logo-sage.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Mulish:wght@300;400;500;600&display=swap">
@@ -14,12 +17,12 @@
   --linen-2:#EDE6DA;    /* alternate band */
   --oat:#E3D9C8;        /* hairlines and frames */
   --espresso:#352A24;   /* text */
-  --muted:#7A6C62;
+  --muted:#65584F;
   --sage:#4A624E;       /* the hummingbird, calmed */
   --sage-soft:#8FA58A;
   --sage-deep:#2E3F33;  /* reservation band */
   --gold:#B08D57;       /* ornaments */
-  --wa:#2E8B57;
+  --wa:#1F7448;
   --display:"Cormorant Garamond","Garamond","Times New Roman",serif;
   --script:"Pinyon Script","Snell Roundhand",cursive;
   --body:"Mulish","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -29,15 +32,22 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-body{background:var(--linen);color:var(--espresso);font-family:var(--body);font-weight:400;font-size:1.0625rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+body{margin:0;min-width:320px;overflow-x:hidden;background:var(--linen);color:var(--espresso);font-family:var(--body);font-weight:400;font-size:1.0625rem;line-height:1.75;-webkit-font-smoothing:antialiased}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
-:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+::selection{background:var(--sage);color:var(--linen)}
 h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;margin:0;text-wrap:balance}
 p{margin:0}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,44px)}
+.skip-link{position:fixed;z-index:100;inset-block-start:12px;inset-inline-start:12px;transform:translateY(-160%);padding:10px 16px;background:var(--sage-deep);color:#fff;text-decoration:none;transition:transform .2s}
+.skip-link:focus{transform:none}
+[id]{scroll-margin-top:96px}
 .warm{filter:saturate(.86) sepia(.08) contrast(1.02)}
 .script{font-family:var(--script);font-weight:400;color:var(--gold);line-height:1}
+.svg-symbols{position:absolute;width:0;height:0;overflow:hidden}
+.media-interior{object-position:40% 40%}
+.media-music{object-position:50% 30%}
 
 /* centred section head with ornament */
 .head{text-align:center;max-width:620px;margin:0 auto clamp(40px,6vw,64px)}
@@ -70,11 +80,25 @@ p{margin:0}
 .brand img{width:40px}
 .brand span{font-family:var(--display);font-size:1.5rem;font-weight:600;letter-spacing:.08em;margin-top:4px}
 .nav .mobile-cta{display:none}
+.menu-toggle,.mobile-menu{display:none}
 @media (max-width:880px){
-  .nav .wrap{grid-template-columns:1fr auto}
+  .nav .wrap{grid-template-columns:1fr auto auto;gap:10px}
   .nav ul{display:none}
   .brand{flex-direction:row;gap:10px}.brand span{margin-top:0}
-  .nav .mobile-cta{display:inline-flex;padding:11px 16px;font-size:.82rem}
+  .nav .mobile-cta{display:inline-flex;min-height:44px;padding:11px 16px;font-size:.82rem}
+  .menu-toggle{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--oat);background:transparent;color:var(--sage);cursor:pointer}
+  .menu-toggle svg{width:22px;height:22px}
+  .mobile-menu{border-top:1px solid var(--oat);background:rgba(245,240,231,.98)}
+  .mobile-menu.open{display:block}
+  .mobile-menu .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding-block:8px}
+  .mobile-menu a{display:flex;align-items:center;min-height:48px;padding-inline:12px;color:var(--espresso);text-decoration:none;border-bottom:1px solid rgba(227,217,200,.7)}
+}
+@media (max-width:480px){
+  .topbar .wrap{display:grid;text-align:center;justify-content:stretch;padding-block:7px}
+  .topbar .soc{justify-content:center;gap:28px}
+  .brand img{width:34px}.brand span{font-size:1.22rem}
+  .nav .wrap{padding-block:9px}
+  .nav .mobile-cta{padding-inline:12px}
 }
 
 /* HERO */
@@ -96,7 +120,16 @@ p{margin:0}
 @keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .arches figure{animation:up 1s cubic-bezier(.2,.7,.2,1) both}
 .arches figure:nth-child(2){animation-delay:.12s}.arches figure:nth-child(3){animation-delay:.24s}
-@media (max-width:640px){.arches{grid-template-columns:1fr 1.2fr 1fr;gap:8px}.arches figure{border-width:3px}.sprig{top:16px;opacity:.45}}
+@media (max-width:640px){
+  .hero{padding-top:48px}
+  .hero h1{font-size:clamp(3rem,16vw,4.8rem);letter-spacing:.035em}
+  .hero .lede{max-width:34ch}
+  .hero-actions{display:grid;margin-top:28px}
+  .hero-actions .btn{width:100%}
+  .arches{grid-template-columns:.82fr 1.25fr .82fr;gap:6px;margin-top:42px}
+  .arches figure{border-width:3px}
+  .sprig{top:16px;opacity:.35}
+}
 
 section{padding-block:clamp(72px,10vw,124px)}
 
@@ -105,7 +138,7 @@ section{padding-block:clamp(72px,10vw,124px)}
 .welcome .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,7vw,96px);align-items:center}
 .collage{position:relative;padding:0 12% 14% 0}
 .collage img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.collage .small{position:absolute;right:0;bottom:0;width:46%;border:8px solid var(--linen-2)}
+.collage .small{position:absolute;right:0;bottom:0;width:46%;margin:0;border:8px solid var(--linen-2)}
 .collage .small img{aspect-ratio:3/4}
 .welcome .script{font-size:2.2rem;display:block}
 .welcome h2{font-size:clamp(2.4rem,4.8vw,3.5rem);margin-top:4px}
@@ -115,8 +148,8 @@ section{padding-block:clamp(72px,10vw,124px)}
 .facts div{padding:18px 12px 0 0}
 .facts b{display:block;font-family:var(--display);font-weight:600;font-size:1.35rem;color:var(--sage)}
 .facts span{font-size:.9rem;color:var(--muted)}
-@media (max-width:860px){.welcome .wrap{grid-template-columns:1fr}.collage{max-width:460px}}
-@media (max-width:420px){.facts{grid-template-columns:1fr}}
+@media (max-width:860px){.welcome .wrap{grid-template-columns:1fr}.collage{width:min(100%,560px);margin-inline:auto}.welcome .body{max-width:60ch}}
+@media (max-width:520px){.facts{grid-template-columns:1fr}.facts div{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--oat)}}
 
 /* DELIGHT: alternating rows */
 .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,7vw,96px);align-items:center}
@@ -134,7 +167,13 @@ section{padding-block:clamp(72px,10vw,124px)}
 .row li i{flex:1;border-bottom:1px dotted rgba(122,108,98,.4);transform:translateY(-5px)}
 .row li small{font-family:var(--body);font-size:.85rem;color:var(--muted)}
 .row .btn{margin-top:28px}
-@media (max-width:860px){.row{grid-template-columns:1fr}.row.flip .pics{order:0}.pics{max-width:480px}.pics figure:last-child{margin-bottom:0}}
+@media (max-width:860px){.row{grid-template-columns:1fr}.row.flip .pics{order:0}.pics{width:min(100%,560px);margin-inline:auto}.pics figure:last-child{margin-bottom:0}.row .body{max-width:60ch}}
+@media (max-width:520px){
+  .row li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 12px;line-height:1.35}
+  .row li i{display:none}
+  .row li small{grid-column:1/-1;margin-top:4px}
+  .row .btn{width:100%}
+}
 
 /* QUOTE */
 .quote{background:var(--linen-2);text-align:center}
@@ -156,7 +195,7 @@ section{padding-block:clamp(72px,10vw,124px)}
 .kinds legend{font-family:var(--display);font-size:1.6rem;font-weight:500;margin-bottom:14px;padding:0}
 .kinds label{cursor:pointer}
 .kinds input{position:absolute;opacity:0;pointer-events:none}
-.kinds span{display:inline-block;padding:9px 16px;border:1px solid var(--oat);font-size:.88rem;color:var(--muted);transition:all .2s}
+.kinds span{display:inline-flex;align-items:center;min-height:44px;padding:9px 16px;border:1px solid var(--oat);font-size:.88rem;color:var(--muted);transition:background .2s,color .2s,border-color .2s}
 .kinds input:checked + span{background:var(--sage);border-color:var(--sage);color:var(--linen)}
 .kinds input:focus-visible + span{outline:1px solid var(--gold);outline-offset:2px}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px}
@@ -169,15 +208,15 @@ section{padding-block:clamp(72px,10vw,124px)}
 .form .btn{width:100%;margin-top:28px;background:var(--wa);border-color:var(--wa)}
 .form .btn:hover{filter:brightness(1.08)}
 .form .hint{margin-top:12px;font-size:.84rem;color:var(--muted);text-align:center}
-@media (max-width:860px){.reserve .wrap{grid-template-columns:1fr}}
-@media (max-width:460px){.fields{grid-template-columns:1fr}}
+@media (max-width:860px){.reserve .wrap{grid-template-columns:1fr}.reserve .body{max-width:60ch}}
+@media (max-width:520px){.form{margin-inline:-4px;padding:26px 20px;outline-offset:-7px}.fields{grid-template-columns:1fr}.kinds{display:grid;grid-template-columns:1fr 1fr}.kinds legend{grid-column:1/-1}.kinds span{width:100%;justify-content:center}.reserve .nums{font-size:1.5rem}}
 
 /* GALLERY */
 .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .gallery-grid figure{margin:0;aspect-ratio:1;overflow:hidden;background:var(--oat)}
 .gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
 .gallery-grid figure:hover img{transform:scale(1.05)}
-@media (max-width:760px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
 
 /* VISIT */
 .visit{background:var(--linen-2)}
@@ -196,7 +235,8 @@ section{padding-block:clamp(72px,10vw,124px)}
 .map .pin img{width:46px}
 .map .pin b{font-family:var(--display);font-weight:600;font-size:1.4rem;letter-spacing:.06em}
 .map .btn{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);white-space:nowrap}
-@media (max-width:860px){.visit .wrap{grid-template-columns:1fr}}
+@media (max-width:860px){.visit .wrap{grid-template-columns:1fr}.map{aspect-ratio:4/3}}
+@media (max-width:480px){.visit dd{font-size:1.2rem;overflow-wrap:anywhere}.map{aspect-ratio:1}.map .btn{bottom:16px}}
 
 footer{background:var(--sage-deep);color:#BFCBBE;padding-block:56px 32px;text-align:center}
 footer img{width:46px;margin:0 auto}
@@ -206,17 +246,23 @@ footer nav a{text-decoration:none}
 footer nav a:hover{color:#fff}
 footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid rgba(238,241,234,.12);font-size:.82rem}
 
-.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;box-shadow:0 12px 28px rgba(46,63,51,.35);transition:transform .2s}
+.wa-float{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;box-shadow:0 12px 28px rgba(46,63,51,.35);transition:transform .2s}
 .wa-float:hover{transform:scale(1.06)}
 .wa-float svg{width:26px;height:26px}
+@media (hover:none){.btn:hover,.btn-ghost:hover{filter:none}.gallery-grid figure:hover img{transform:none}.wa-float:hover{transform:none}}
+@media (pointer:coarse){.topbar a,footer nav a{display:inline-flex;align-items:center;min-height:44px}}
+@media (max-width:360px){.nav .mobile-cta{font-size:0;width:44px;padding:0}.nav .mobile-cta::after{content:"Book";font-size:.78rem}.brand span{font-size:1.08rem}.wrap{padding-inline:14px}}
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+
+<svg class="svg-symbols" aria-hidden="true">
   <symbol id="wa" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 8.6c.3 2.6 2.4 4.9 5.2 5.6l1.1-1.2 2 .9-.4 1.6c-3.9.4-8.7-3.4-9.3-7.5l1.6-.5.9 2z" fill="currentColor"/></symbol>
   <symbol id="leaf-orn" viewBox="0 0 26 14"><path d="M13 7c-3-5-8-6-12-5 2 4 6 6 12 5zm0 0c3-5 8-6 12-5-2 4-6 6-12 5z" fill="currentColor"/></symbol>
+  <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
   <symbol id="sprig" viewBox="0 0 200 300"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 290C60 220 80 140 150 20"/></g>
     <g fill="currentColor"><path d="M44 236c-26-6-40-24-38-44 22 4 36 22 38 44z"/><path d="M52 222c22-14 46-12 60 4-20 14-42 12-60-4z"/><path d="M70 178c-24-10-34-30-28-50 20 8 30 28 28 50z"/><path d="M80 166c22-12 46-8 58 10-22 12-44 8-58-10z"/><path d="M98 120c-22-12-30-34-22-52 18 10 26 30 22 52z"/><path d="M108 108c22-10 44-4 54 14-22 10-42 4-54-14z"/><path d="M128 66c-18-12-22-32-14-48 16 10 20 30 14 48z"/><path d="M136 56c18-8 36-2 44 14-18 8-34 2-44-14z"/></g></symbol>
 </svg>
@@ -234,6 +280,10 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
     <a class="brand" href="#top"><img src="img/logo-sage.png" alt="" width="542" height="602"><span>SHULABH</span></a>
     <ul class="right"><li><a href="#reserve">Reservation</a></li><li><a href="#visit">Contact</a></li></ul>
     <a class="btn mobile-cta" href="#reserve">Reserve</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg aria-hidden="true"><use href="#menu"/></svg></button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="wrap"><a href="#about">About</a><a href="#menu">Menu</a><a href="#gallery">Gallery</a><a href="#visit">Contact</a></div>
   </div>
 </nav>
 
@@ -252,19 +302,19 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
     </div>
     <div class="arches">
       <figure><img class="warm" src="img/donuts.jpg" alt="Glazed donuts on a white tray" width="335" height="597"></figure>
-      <figure><img class="warm" src="img/interior.jpg" alt="The Shulabh counter with pendant lamps and plants" width="730" height="904" style="object-position:40% 40%"></figure>
+      <figure><img class="warm media-interior" src="img/interior.jpg" alt="The Shulabh counter with pendant lamps and plants" width="730" height="904"></figure>
       <figure><img class="warm" src="img/chilli-momo.jpg" alt="Chilli momo with capsicum and onion" width="335" height="597"></figure>
     </div>
   </div>
   <div class="hero-base"></div>
 </header>
 
-<main>
+<main id="main">
   <section class="welcome" id="about">
     <div class="wrap">
       <div class="collage">
         <img class="warm" src="img/interior.jpg" alt="The black marble counter, coffee grinder and pendant lamps at Shulabh" loading="lazy">
-        <figure class="small" style="margin:0"><img class="warm" src="img/music.jpg" alt="Friends playing guitar at a cafe table" loading="lazy"></figure>
+        <figure class="small"><img class="warm" src="img/music.jpg" alt="Friends playing guitar at a cafe table" loading="lazy"></figure>
       </div>
       <div>
         <span class="script">Our story</span>
@@ -344,7 +394,7 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
         <p class="body">Tell us what you need and send it straight to us on WhatsApp. We will reply to confirm the time and price.</p>
         <p class="nums">984-4896928<br>985-8054596<small>WhatsApp and phone</small></p>
       </div>
-      <form class="form" id="form" novalidate>
+      <form class="form" id="form">
         <fieldset class="kinds">
           <legend>What would you like?</legend>
           <label><input type="radio" name="kind" value="Table booking" checked><span>Table</span></label>
@@ -353,12 +403,12 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
           <label><input type="radio" name="kind" value="Takeaway food"><span>Takeaway</span></label>
         </fieldset>
         <div class="fields">
-          <div class="field full"><label for="f-name">Your name</label><input id="f-name" autocomplete="name" placeholder="Full name"></div>
+          <div class="field full"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" placeholder="Full name" required maxlength="80"></div>
           <div class="field"><label for="f-date">Date</label><input id="f-date" type="date"></div>
           <div class="field"><label for="f-time" id="f-time-label">Arrival time</label><input id="f-time" type="time" value="17:00"></div>
           <div class="field full"><label for="f-items" id="f-items-label">Guests and notes</label><textarea id="f-items" placeholder="e.g. 4 people, window table"></textarea></div>
         </div>
-        <a class="btn" id="f-send" href="https://wa.me/9779844896928" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Send on WhatsApp</a>
+        <button class="btn" id="f-send" type="submit"><svg aria-hidden="true"><use href="#wa"/></svg>Send on WhatsApp</button>
         <p class="hint">Opens WhatsApp with your request written out.</p>
       </form>
     </div>
@@ -376,7 +426,7 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
         <figure><img class="warm" src="img/chilli-momo.jpg" alt="Chilli momo" loading="lazy"></figure>
         <figure><img class="warm" src="img/sourdough.jpg" alt="Sourdough loaves" loading="lazy"></figure>
         <figure><img class="warm" src="img/interior.jpg" alt="The counter and lamps" loading="lazy"></figure>
-        <figure><img class="warm" src="img/music.jpg" alt="Friends with a guitar" loading="lazy" style="object-position:50% 30%"></figure>
+        <figure><img class="warm media-music" src="img/music.jpg" alt="Friends with a guitar" loading="lazy"></figure>
         <figure><img class="warm" src="img/cinnamon-loaf.jpg" alt="Cinnamon swirl loaf" loading="lazy"></figure>
         <figure><img class="warm" src="img/wings.jpg" alt="Chicken wings" loading="lazy"></figure>
         <figure><img class="warm" src="img/macarons.jpg" alt="Macarons" loading="lazy"></figure>
@@ -417,6 +467,12 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
 <script>
 (function(){
   var WA="9779844896928", $=function(id){return document.getElementById(id);};
+  var toggle=document.querySelector(".menu-toggle"), mobileMenu=$("mobile-menu");
+  function closeMenu(){mobileMenu.classList.remove("open");toggle.setAttribute("aria-expanded","false");toggle.setAttribute("aria-label","Open menu");}
+  toggle.addEventListener("click",function(){var open=!mobileMenu.classList.contains("open");mobileMenu.classList.toggle("open",open);toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Close menu":"Open menu");});
+  mobileMenu.addEventListener("click",function(e){if(e.target.closest("a"))closeMenu();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeMenu();});
+  window.matchMedia("(min-width: 881px)").addEventListener("change",function(e){if(e.matches)closeMenu();});
   document.querySelectorAll(".wa-link").forEach(function(a){a.href="https://wa.me/"+WA+"?text="+encodeURIComponent("Namaste Shulabh! I have a question.");});
   var date=$("f-date");
   try{var d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); date.value=d.toISOString().slice(0,10); date.min=date.value;}catch(e){}
@@ -436,11 +492,11 @@ footer small{display:block;margin-top:26px;padding-top:22px;border-top:1px solid
     if(date.value) l.push("Date: "+date.value);
     if($("f-time").value) l.push(t+": "+fmtTime($("f-time").value));
     if($("f-items").value.trim()) l.push(h[0]+": "+$("f-items").value.trim());
-    $("f-send").href="https://wa.me/"+WA+"?text="+encodeURIComponent(l.join("\n"));
+    $("f-send").dataset.url="https://wa.me/"+WA+"?text="+encodeURIComponent(l.join("\n"));
   }
   var form=$("form");
   form.addEventListener("input",build); form.addEventListener("change",build);
-  form.addEventListener("submit",function(e){e.preventDefault();});
+  form.addEventListener("submit",function(e){e.preventDefault();build();window.open($("f-send").dataset.url,"_blank","noopener");});
   build();
 })();
 </script>
